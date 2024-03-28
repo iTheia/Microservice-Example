@@ -1,0 +1,34 @@
+Table loans {
+  id integer [primary key, increment]
+  client_id integer [ref: > clients.id]
+  amount decimal(15, 2)
+  start_date date
+  end_date date
+  interest_rate decimal(5, 2)
+  status varchar(20)
+  account_id varchar
+}
+
+Table loan_payments {
+  id integer [primary key, increment]
+  loan_id integer [ref: > loans.id]
+  amount decimal(15, 2)
+  account_id varchar
+}
+
+Table clients {
+  id integer [primary key]
+  name varchar
+  lastname varchar
+  email varchar
+  phone varchar
+  is_deleted boolean
+  account_id varchar
+}
+
+Table login {
+  id integer [primary key, increment]
+  email varchar [unique, not null]
+  password varchar [not null]
+  role varchar [default: 'regular', not null]
+}
